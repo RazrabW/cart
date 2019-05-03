@@ -1,0 +1,29 @@
+{
+  "name": "cart",
+  "version": "0.0.1",
+  "description": "Easy library to create your shopping cart",
+  "main": "index.js",
+  "dependencies": {
+    "jsdoc-to-markdown": "^4.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jsdoc2md src/cart.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RazrabW/cart.git"
+  },
+  "keywords": [
+    "js",
+    "cart",
+    "javascript",
+    "library"
+  ],
+  "author": "Oleg Chernov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RazrabW/cart/issues"
+  },
+  "homepage": "https://github.com/RazrabW/cart#readme"
+}
