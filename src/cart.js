@@ -1,9 +1,9 @@
 class Cart {
 
     /**
-     * @param  {Object} [data]
-     * @property {String} [storage]
-     * @property {Boolean} [log]
+     * @param  {Object} data
+     * @property {String} storage
+     * @property {Boolean} log
      */
     constructor(data) {
         this.storage = data.storage;
@@ -15,7 +15,13 @@ class Cart {
 
     }
 
-     log_cart(data) {
+    /**
+     * Вывод логов
+     * @param  {Object} data 
+     * @property {String} method используемый метод
+     * @property {Number} length размер storage
+     */
+    log_cart(data) {
      	let time = new Date();
 
     	let logcart = [{
@@ -30,9 +36,9 @@ class Cart {
     }
 
     /**
-     * @param {Object} [data] 
-     * @property {Boolean} [beginning=false] - вставка в начало.
-     * @property {*} [data]
+     * @param {Object} data 
+     * @property {Boolean} beginning=false - вставка в начало.
+     * @property {*} data
      */
     add(data) {
         try {
@@ -77,7 +83,7 @@ class Cart {
     }
 
     /**
-     * @param  {Number} [id]
+     * @param  {Number} id
      */
     remove(id) {
         let storage = JSON.parse(localStorage.getItem(this.storage));
@@ -94,8 +100,8 @@ class Cart {
     }
 
     /**
-     * @param  {Object} [setting]
-     * @property {Boolean} [string=false] - вернуть результат текстом
+     * @param  {Object} setting
+     * @property {Boolean} string=false - вернуть результат текстом
      */
     get(setting) {
         if (setting.string == false) {
