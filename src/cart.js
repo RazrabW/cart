@@ -13,13 +13,20 @@ class Cart {
             localStorage.setItem(this.storage, '[]');
         }
 
-        if (this.log == null) {
-            this.log = false;
-        } else if (typeof this.log != Boolean) {
-            console.warn('log in not boolean.');
-            this.log = false;
-        }
+    }
 
+     log_cart(data) {
+     	let time = new Date();
+
+    	let logcart = [{
+    		method: data.method,
+    		storage_length: data.length,
+    		time: `${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}`
+    	}];
+
+    	if (this.log == true) {
+    		console.table(logcart);
+    	}
     }
 
     /**
@@ -32,6 +39,19 @@ class Cart {
             let storage = JSON.parse(localStorage.getItem(this.storage));
 
             if (data.beginning == true) { //вставка в начало
+                storage.unshift({
+                    id: storage.length + 1,
+                    data: data.data
+                });
+
+                localStorage.setItem(this.storage, JSON.stringify(storage));
+
+                this.log_cart({
+                	method: 'add',
+                	length: JSON.parse(localStorage.getItem(this.storage)).length
+                });
+
+                return localStorage.getItem(this.storage);
 
             } else { //вставка в конец
                 storage.push({
@@ -40,6 +60,11 @@ class Cart {
                 });
 
                 localStorage.setItem(this.storage, JSON.stringify(storage));
+
+                this.log_cart({
+                	method: 'add',
+                	length: JSON.parse(localStorage.getItem(this.storage)).length
+                });
 
                 return localStorage.getItem(this.storage);
             }
@@ -60,6 +85,11 @@ class Cart {
 
         localStorage.setItem(this.storage, JSON.stringify(storage));
 
+        this.log_cart({
+       		method: 'remove',
+          	length: JSON.parse(localStorage.getItem(this.storage)).length
+        });
+
         return JSON.parse(localStorage.getItem(this.storage));
     }
 
@@ -69,8 +99,20 @@ class Cart {
      */
     get(setting) {
         if (setting.string == false) {
+
+	        this.log_cart({
+	       		method: 'get',
+	          	length: JSON.parse(localStorage.getItem(this.storage)).length
+	        });
+
             return JSON.parse(localStorage.getItem(this.storage));
         } else {
+
+	        this.log_cart({
+	       		method: 'get',
+	          	length: JSON.parse(localStorage.getItem(this.storage)).length
+	        });
+
             return localStorage.getItem(this.storage);
         }
     }
